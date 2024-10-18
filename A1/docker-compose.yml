@@ -1,0 +1,22 @@
+services:
+  container1:
+    image: ashishkumarg0877/container1
+    volumes:
+      - ./:/shared_volume
+    ports:
+      - "6000:6000"
+    depends_on:
+      - container2
+    networks:
+      - app-network
+
+  container2:
+    image: ashishkumarg0877/container2
+    volumes:
+      - ./:/shared_volume
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
